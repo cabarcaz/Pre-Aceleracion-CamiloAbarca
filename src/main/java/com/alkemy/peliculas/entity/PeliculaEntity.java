@@ -21,14 +21,12 @@ public class PeliculaEntity {
     private Long id;
 
     private String imagen;
-
     private String titulo;
+    private Long calificacion;
 
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     @Column(name="fecha_de_creacion")
     private LocalDateTime fechaDeCreacion;
-
-    private Long calificacion;
 
     @ManyToOne
     @JoinColumn(name ="genero_id", referencedColumnName = "id")

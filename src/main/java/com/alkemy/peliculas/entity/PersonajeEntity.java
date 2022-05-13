@@ -23,7 +23,7 @@ public class PersonajeEntity {
 
     private Long edad;
 
-    private  Long peso;
+    private  String rol;
 
     private String historia;
 

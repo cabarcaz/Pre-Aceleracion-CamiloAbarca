@@ -18,6 +18,5 @@ public class GeneroEntity {
 
     private String imagen;
 
-    // TODO: Pendiente relacion con peliculas.
 
 }
