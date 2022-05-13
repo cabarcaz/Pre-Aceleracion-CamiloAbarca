@@ -2,6 +2,8 @@ package com.alkemy.peliculas.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,6 +16,8 @@ import java.util.Objects;
 @Table(name="pelicula")
 @Getter
 @Setter
+@SQLDelete(sql = "UPDATE pelicula SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public class PeliculaEntity {
 
     @Id
@@ -23,6 +27,7 @@ public class PeliculaEntity {
     private String imagen;
     private String titulo;
     private Long calificacion;
+    private Boolean deleted = Boolean.FALSE;
 
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     @Column(name="fecha_de_creacion")

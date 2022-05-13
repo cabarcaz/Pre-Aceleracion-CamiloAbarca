@@ -22,8 +22,6 @@ public class GeneroServiceImpl implements GeneroService {
         GeneroEntity entity = generoMapper.generoDTO2Entity(dto);
         GeneroEntity entitySaved =  generoRepository.save(entity);
         GeneroDTO result = generoMapper.generoEntity2DTO(entitySaved);
-        //Guarda - Quiero devolver el Genero guardado
-        System.out.println("Genero Guardado");
         return result;
     }
 
@@ -32,6 +30,11 @@ public class GeneroServiceImpl implements GeneroService {
         List<GeneroEntity> entities = generoRepository.findAll();
         List<GeneroDTO> result = generoMapper.generoEntityList2DTOList(entities);
         return result;
+    }
+
+    @Override
+    public void delete(Long id) {
+        generoRepository.deleteById(id);
     }
 
 }

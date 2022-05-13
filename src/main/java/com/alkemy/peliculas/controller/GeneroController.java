@@ -22,7 +22,6 @@ public class GeneroController {
     //? EndPoint Save/Create.
     @PostMapping
     public ResponseEntity<GeneroDTO> save(@RequestBody GeneroDTO genero){
-
         GeneroDTO generoGuardado = generoService.save(genero);
         //Respuesta del Status + objeto
         return ResponseEntity.status(HttpStatus.CREATED).body(generoGuardado);
@@ -35,5 +34,19 @@ public class GeneroController {
         return ResponseEntity.ok().body(generos);
     }
 
+    //? End Point Delete
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        generoService.delete(id);
+        return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
-}
+
+
+
+    }
+
+
+
+
+
