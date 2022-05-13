@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name="personaje")
 @Getter
 @Setter
-@SQLDelete(sql= "UPDATE personaje SET delete = true WHERE id=?")
+@SQLDelete(sql= "UPDATE personaje SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 public class PersonajeEntity {
 
@@ -22,13 +22,9 @@ public class PersonajeEntity {
     private Long id;
 
     private String imagen;
-
     private String nombre;
-
     private Long edad;
-
     private  String rol;
-
     private String historia;
 
     private boolean deleted = Boolean.FALSE;
