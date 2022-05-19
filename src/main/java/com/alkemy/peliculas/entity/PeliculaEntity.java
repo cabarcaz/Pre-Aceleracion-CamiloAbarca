@@ -4,9 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +29,15 @@ public class PeliculaEntity {
     private Long id;
 
     private String imagen;
+    @NotEmpty
     private String titulo;
+    @Range(min=0, max=5)
     private Long calificacion;
     private Boolean deleted = Boolean.FALSE;
 
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     @Column(name="fecha_de_creacion")
-    private LocalDateTime fechaDeCreacion;
+    private LocalDate fechaDeCreacion;
 
     @ManyToOne
     @JoinColumn(name ="genero_id", referencedColumnName = "id")

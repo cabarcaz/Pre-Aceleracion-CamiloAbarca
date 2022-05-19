@@ -12,6 +12,7 @@ public class GeneroMapper {
 
     public GeneroEntity generoDTO2Entity(GeneroDTO dto){
         GeneroEntity generoEntity = new GeneroEntity();
+        generoEntity.setId(dto.getId());
         generoEntity.setImagen(dto.getImagen());
         generoEntity.setNombre(dto.getNombre());
         return generoEntity;
@@ -25,12 +26,5 @@ public class GeneroMapper {
         return dto;
     }
 
-    public List<GeneroDTO> generoEntityList2DTOList(List<GeneroEntity> entities){
-        List<GeneroDTO> dtos = new ArrayList<>();
-        for(GeneroEntity entity : entities){
-            dtos.add(generoEntity2DTO(entity));
-        }
-        return dtos;
-    }
 
 }

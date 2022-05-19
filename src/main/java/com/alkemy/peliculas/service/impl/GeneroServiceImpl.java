@@ -18,23 +18,11 @@ public class GeneroServiceImpl implements GeneroService {
     @Autowired
     private GeneroRepository generoRepository;
 
-    public GeneroDTO save(GeneroDTO dto){
+    public GeneroDTO save(GeneroDTO dto) {
         GeneroEntity entity = generoMapper.generoDTO2Entity(dto);
-        GeneroEntity entitySaved =  generoRepository.save(entity);
+        GeneroEntity entitySaved = generoRepository.save(entity);
         GeneroDTO result = generoMapper.generoEntity2DTO(entitySaved);
         return result;
-    }
-
-    @Override
-    public List<GeneroDTO> getAllGeneros() {
-        List<GeneroEntity> entities = generoRepository.findAll();
-        List<GeneroDTO> result = generoMapper.generoEntityList2DTOList(entities);
-        return result;
-    }
-
-    @Override
-    public void delete(Long id) {
-        generoRepository.deleteById(id);
     }
 
 }
