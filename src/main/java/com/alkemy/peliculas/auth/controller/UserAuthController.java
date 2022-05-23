@@ -1,7 +1,5 @@
 package com.alkemy.peliculas.auth.controller;
 
-
-
 import com.alkemy.peliculas.auth.dto.AuthenticationRequest;
 import com.alkemy.peliculas.auth.dto.AuthenticationResponse;
 import com.alkemy.peliculas.auth.dto.UserDTO;
@@ -24,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Collections;
+
 
 @RestController
 @RequestMapping("/auth")

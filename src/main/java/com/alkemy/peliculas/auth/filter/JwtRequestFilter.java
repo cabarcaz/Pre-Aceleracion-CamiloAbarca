@@ -27,6 +27,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    private static final String BEARER = "Bearer ";
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
@@ -35,7 +37,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwt = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) { // bearer es el tipo de token
+        if (authorizationHeader != null && authorizationHeader.startsWith(BEARER)) { // bearer es el tipo de token
             jwt = authorizationHeader.substring(7); // se saca los primero 7 caracteres para poder obteber el token
             username = jwtUtils.extractUsername(jwt);// obtenemos el nombre de usuario
         }
@@ -47,8 +49,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             if (jwtUtils.validateToken(jwt, userDetails)) { // hace las validadaciones
                 UsernamePasswordAuthenticationToken authReq =
                         new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), Collections.EMPTY_LIST);
-               Authentication auth = authenticationManager.authenticate(authReq);
-                SecurityContextHolder.getContext().setAuthentication(auth);
+//                Authentication auth = authenticationManager.authenticate(authReq); // le digo a la unidad de spring q estoy autenticado
+                SecurityContextHolder.getContext().setAuthentication(authReq);
             }
         }
         filterChain.doFilter(request, response);

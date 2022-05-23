@@ -2,6 +2,7 @@ package com.alkemy.peliculas.auth.config;
 
 import com.alkemy.peliculas.auth.filter.JwtRequestFilter;
 import com.alkemy.peliculas.auth.service.UserDetailsCustomService;
+import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,15 +42,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-       httpSecurity.csrf().disable()
-               .authorizeRequests().antMatchers("/auth/*").permitAll()
-               .anyRequest().authenticated()
-               .and().exceptionHandling()
-               .and().sessionManagement()
-               .sessionCreationPolicy(SessionCreationPolicy.STATELESS); //para cada endpoint haga una atenticacion distinta/nueva
+        httpSecurity.csrf().disable()
+                .authorizeRequests().antMatchers("/auth/*").permitAll()
+                .anyRequest().authenticated()
+                .and().exceptionHandling()
+                .and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS); //para cada endpoint haga una atenticacion distinta/nueva
 
         // agrega un filtro, chequea el header verificando los datos correctos ANTES QUE EL FILTRO DE SPRIGBOOT POR DEFECTO
-       httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
 }

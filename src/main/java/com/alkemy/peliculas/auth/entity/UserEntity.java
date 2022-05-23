@@ -26,8 +26,8 @@ public class UserEntity implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "usuario_roles", joinColumns = @JoinColumn(name = "usuario_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"),
-    uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "role_id"})})
+            inverseJoinColumns = @JoinColumn(name = "role_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "role_id"})})
     private Set<RoleEntity> roles;
 
     private boolean accountNonExpired;
